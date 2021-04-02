@@ -11,16 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Text("Tuebix")
-                ForEach(["one", "two"], id: \.self) { element in
-                    Text(element)
-                }
-                
-            }
-            .navigationTitle("Featured")
-        }
+        Text("hi")
     }
 }
 

@@ -7,10 +7,14 @@
 
 import SwiftUI
 
+
+let conference = CONFERENCES["Tuebix"]
+
 @main
 struct TuebixAppApp: App, NetworkDataDelegate {
     func didReceiveData(fetchedData: Data) {
-        print("conseguido \(fetchedData)")
+        let x = ConferenceParser(data: fetchedData, type: "basic")
+        x.printAll()
     }
     
     func didOccurrErrorInFetching(_ error: String) {
@@ -20,7 +24,7 @@ struct TuebixAppApp: App, NetworkDataDelegate {
         let network = NetworkData()
         network.delegate = self
         network.fetchData(from: "https://www.tuebix.org/2019/giggity.xml")
-        print("\(CONFERENCES)")
+        //print("\(CONFERENCES)")
     }
     
     
