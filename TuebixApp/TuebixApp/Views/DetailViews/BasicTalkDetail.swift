@@ -15,6 +15,9 @@ struct BasicTalkDetail: View {
                 .font(.title)
             Divider()
             Text(talkDetail.description)
+            ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
+                Link(key, destination: URL(string: value)!).padding()
+            }
         }.padding()
 
     }

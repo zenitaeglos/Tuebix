@@ -21,8 +21,15 @@ struct ConferenceList: View {
                 ForEach(conferenceInformation.conferenceTalksBasicList, id: \.self) { item in
                     NavigationLink(
                         destination: BasicTalkDetail(talkDetail: item)) {
-                            Text(item.title)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(item.title).font(.headline)
+                            HStack {
+                                Text("start: " + item.start).font(.subheadline)
+                                Text("Room: " + item.room).font(.subheadline)
+                            }
                         }
+                        .padding([.top, .bottom], 5)
+                    }
                 }
             }.navigationTitle(conference.title).onAppear {
             self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
@@ -33,7 +40,14 @@ struct ConferenceList: View {
             List {
                 ForEach(self.conferenceInformation.conferenceTalksVideoList, id: \.self) { item in
                     NavigationLink(destination: VideoTalkDetail(talkDetail: item)) {
-                            Text(item.title)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(item.title).font(.headline)
+                            HStack {
+                                Text("start: " + item.start).font(.subheadline)
+                                Text("Room: " + item.room).font(.subheadline)
+                            }
+                        }
+                        .padding([.top, .bottom], 5)
                     }
                 }
             }.navigationTitle(conference.title).onAppear {

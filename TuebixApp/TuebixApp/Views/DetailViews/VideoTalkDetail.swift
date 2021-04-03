@@ -17,9 +17,24 @@ struct VideoTalkDetail: View {
             Divider()
             Text(talkDetail.description)
             
-            VideoPlayer(player: AVPlayer(url: URL(string: self.urlForVideo())!))
-                .frame(height: 400)
+            if isVideo() {
+                VideoPlayer(player: AVPlayer(url: URL(string: self.urlForVideo())!))
+                    .frame(height: 400)
+            }
+            ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
+                if !key.contains("Video recording") {
+                    Link(key, destination: URL(string: value)!).padding()
+                }
+
+            }
         }.padding()
+    }
+    
+    func isVideo() -> Bool {
+        if self.talkDetail.links["Video recording (mp4)"] != nil {
+            return true
+        }
+        return false
     }
     
     func urlForVideo() -> String {

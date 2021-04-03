@@ -12,11 +12,13 @@ struct CategoryYear: View {
     var conference: Conference
     var body: some View {
         HStack(alignment: .top, spacing: 2) {
+            List {
             ForEach(conference.years, id: \.self) { year in
                 NavigationLink(destination: ConferenceList(conference: conference, chosenYear: year)) {
                     Text(String(year))
                 }
             }
+        }
         }.navigationTitle(conference.title)
         .onAppear {
             self.conferencesInformation.setCurrentConference(from: conference)
