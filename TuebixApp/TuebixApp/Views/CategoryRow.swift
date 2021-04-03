@@ -24,7 +24,6 @@ struct CategoryRow: View {
                             destination: CategoryYear(conference: item)) {
                             CategoryItem(conference: item)
                         }
-                        
                     }
                 }
             }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoryYear: View {
+    @EnvironmentObject var conferencesInformation: ConferencesViewModel
     var conference: Conference
     var body: some View {
         HStack(alignment: .top, spacing: 2) {
@@ -16,6 +17,9 @@ struct CategoryYear: View {
                     Text(String(year))
                 }
             }
+        }.navigationTitle(conference.title)
+        .onAppear {
+            self.conferencesInformation.setCurrentConference(from: conference)
         }
     }
 }

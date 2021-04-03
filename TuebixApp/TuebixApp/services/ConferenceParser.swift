@@ -31,8 +31,17 @@ struct BasicEventTag: EventTag, Hashable {
     var links: [String: String] = [ : ]
 }
 
-struct VideoEventTag: EventTag {
+struct VideoEventTag: EventTag, Hashable {
+    var start: String = ""
+    var duration: String = ""
     var room: String = ""
+    var title: String = ""
+    var subtitle: String = ""
+    var track: String = ""
+    var abstract: String = ""
+    var description: String = ""
+    var persons: [String] = []
+    var links: [String: String] = [ : ]
 }
 
 
@@ -94,7 +103,7 @@ extension BasicEventParser: XMLParserDelegate {
         }
         
         if self.currentElement == "description" {
-            self.event.description = string
+            self.event.description += string
         }
         
         if self.currentElement == "person" {
@@ -128,9 +137,14 @@ class VideoEventParser: NSObject {
     var delegate: EventParserDelegate?
     var currentElement: String
     
+    var person: String
+    var link: String
+    
     override init() {
         self.event = VideoEventTag()
         self.currentElement = ""
+        self.person = ""
+        self.link = ""
         super.init()
 
     }
@@ -140,21 +154,60 @@ class VideoEventParser: NSObject {
 extension VideoEventParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentElement = elementName
+        
+        // find link if available
+        if let link = attributeDict["href"] {
+            self.link = link
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if self.currentElement == "start" {
+            self.event.start = string
+        }
+        
+        if self.currentElement == "duration" {
+            self.event.duration = string
+        }
+        
         if self.currentElement == "room" {
             self.event.room = string
+        }
+        
+        if self.currentElement == "title" {
+            self.event.title = string
+        }
+        
+        if self.currentElement == "subtitle" {
+            self.event.subtitle = string
+        }
+        
+        if self.currentElement == "description" {
+            self.event.description += string
+        }
+        
+        if self.currentElement == "person" {
+            self.person += string
+        }
+        
+        if self.currentElement == "link" {
+            self.event.links[string] = self.link
         }
         
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
+        if elementName == "person" {
+            self.event.persons.append(self.person)
+            self.person = ""
+        }
+        
         if elementName == "event" {
             self.delegate?.parser(didFinishBasicEventParser: self.event)
         }
         self.currentElement = ""
+        self.link = ""
     }
 }
 
@@ -222,7 +275,7 @@ extension ConferenceParser: EventParserDelegate {
     func parser(didFinishBasicEventParser event: EventTag) {
         self.parser.delegate = self
         self.currentParser = nil
-        self.conferenceTalks.append(event as! BasicEventTag)
+        self.conferenceTalks.append(event)
     }
     
     

@@ -17,27 +17,27 @@ struct ConferenceList: View {
     @ViewBuilder
     var body: some View {
         if conference.type == "basic" {
-            NavigationView {
-                List {
-                    ForEach(conferenceInformation.conferenceTalksBasicList, id: \.self) { item in
-                        NavigationLink(
-                            destination: BasicTalkDetail()) {
-                                Text(item.title)
-                            }
-                    }
+            List {
+                ForEach(conferenceInformation.conferenceTalksBasicList, id: \.self) { item in
+                    NavigationLink(
+                        destination: BasicTalkDetail(talkDetail: item)) {
+                            Text(item.title)
+                        }
                 }
-            }.onAppear {
-                self.conferenceInformation.fetchConferenceTalks()
+            }.navigationTitle(conference.title).onAppear {
+            self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
             }
         }
         
         else if conference.type == "video" {
-            NavigationView {
-                List {
-                    ForEach(["pato", "vaca"], id: \.self) { item in
-                        Text(item)
+            List {
+                ForEach(self.conferenceInformation.conferenceTalksVideoList, id: \.self) { item in
+                    NavigationLink(destination: VideoTalkDetail(talkDetail: item)) {
+                            Text(item.title)
                     }
                 }
+            }.navigationTitle(conference.title).onAppear {
+                self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
             }
         }
     }

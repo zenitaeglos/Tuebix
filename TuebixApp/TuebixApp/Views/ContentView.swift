@@ -26,7 +26,7 @@ struct ContentView: View {
 
                 CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
             }
-            .navigationTitle("Featured")
+            .navigationTitle("Linux Conferences")
         }
         .onAppear {
             self.conferenceInformation.setDelegate()
