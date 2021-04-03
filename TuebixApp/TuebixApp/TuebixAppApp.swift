@@ -8,13 +8,13 @@
 import SwiftUI
 
 
-let conference = CONFERENCES["Tuebix"]
+//let conference = CONFERENCES["Tuebix"]
 
 @main
 struct TuebixAppApp: App, NetworkDataDelegate {
     func didReceiveData(fetchedData: Data) {
-        let x = ConferenceParser(data: fetchedData, type: "basic")
-        x.printAll()
+        //let x = ConferenceParser(data: fetchedData, type: "basic")
+        //x.printAll()
     }
     
     func didOccurrErrorInFetching(_ error: String) {
@@ -24,6 +24,7 @@ struct TuebixAppApp: App, NetworkDataDelegate {
         let network = NetworkData()
         network.delegate = self
         network.fetchData(from: "https://www.tuebix.org/2019/giggity.xml")
+        //network.fetchData(from: "https://fosdem.org/2020/schedule/xml")
         //print("\(CONFERENCES)")
     }
     
@@ -32,7 +33,7 @@ struct TuebixAppApp: App, NetworkDataDelegate {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(ConferencesViewModel())
                 //.environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

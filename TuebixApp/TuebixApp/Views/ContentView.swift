@@ -10,8 +10,27 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @EnvironmentObject var conferenceInformation: ConferencesViewModel
+    //@ObservedObject var conferences: ConferencesViewModel
     var body: some View {
-        Text("hi")
+        
+        NavigationView {
+            List {
+                NavigationLink(destination: CategoryYear(conference: conferenceInformation.conferenceFeatured)) {
+                    conferenceInformation.conferenceFeatured.image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .clipped()
+                }
+
+                CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
+            }
+            .navigationTitle("Featured")
+        }
+        .onAppear {
+            self.conferenceInformation.setDelegate()
+        }
     }
 }
 
@@ -83,6 +102,6 @@ private let itemFormatter: DateFormatter = {
 */
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()//.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environmentObject(ConferencesViewModel())//.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

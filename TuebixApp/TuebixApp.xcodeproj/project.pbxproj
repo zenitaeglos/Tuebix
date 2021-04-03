@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92A4861261749B1008241A6 /* ConferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92A4860261749B1008241A6 /* ConferencesViewModel.swift */; };
 		D95736B82606165E004E0CAF /* TuebixAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95736B72606165E004E0CAF /* TuebixAppApp.swift */; };
 		D95736BA2606165E004E0CAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95736B92606165E004E0CAF /* ContentView.swift */; };
 		D95736BC2606165F004E0CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95736BB2606165F004E0CAF /* Assets.xcassets */; };
 		D95736BF2606165F004E0CAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95736BE2606165F004E0CAF /* Preview Assets.xcassets */; };
 		D95736C12606165F004E0CAF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95736C02606165F004E0CAF /* Persistence.swift */; };
 		D95736C42606165F004E0CAF /* TuebixApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D95736C22606165F004E0CAF /* TuebixApp.xcdatamodeld */; };
+		D995C072261859080020DD62 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995C071261859080020DD62 /* CategoryRow.swift */; };
+		D995C07826185C590020DD62 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995C07726185C590020DD62 /* CategoryItem.swift */; };
 		D9AF1153260DBFB30008014C /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF1152260DBFB30008014C /* NetworkData.swift */; };
 		D9AF1158260DC58E0008014C /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF1157260DC58E0008014C /* config.swift */; };
 		D9AF115D260DCB4F0008014C /* ConferenceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF115C260DCB4F0008014C /* ConferenceParser.swift */; };
+		D9DC9A37261869A60091DC08 /* CategoryYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC9A36261869A60091DC08 /* CategoryYear.swift */; };
+		D9E171372618730000FF3646 /* ConferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E171362618730000FF3646 /* ConferenceList.swift */; };
+		D9ED38C226189C09000FD939 /* BasicTalkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED38C126189C09000FD939 /* BasicTalkDetail.swift */; };
+		D9ED38C826189C2A000FD939 /* VideoTalkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED38C726189C2A000FD939 /* VideoTalkDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D92A4860261749B1008241A6 /* ConferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesViewModel.swift; sourceTree = "<group>"; };
 		D95736B42606165E004E0CAF /* TuebixApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuebixApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95736B72606165E004E0CAF /* TuebixAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuebixAppApp.swift; sourceTree = "<group>"; };
 		D95736B92606165E004E0CAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,9 +35,15 @@
 		D95736C02606165F004E0CAF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D95736C32606165F004E0CAF /* TuebixApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TuebixApp.xcdatamodel; sourceTree = "<group>"; };
 		D95736C52606165F004E0CAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D995C071261859080020DD62 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		D995C07726185C590020DD62 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		D9AF1152260DBFB30008014C /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		D9AF1157260DC58E0008014C /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		D9AF115C260DCB4F0008014C /* ConferenceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceParser.swift; sourceTree = "<group>"; };
+		D9DC9A36261869A60091DC08 /* CategoryYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryYear.swift; sourceTree = "<group>"; };
+		D9E171362618730000FF3646 /* ConferenceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceList.swift; sourceTree = "<group>"; };
+		D9ED38C126189C09000FD939 /* BasicTalkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTalkDetail.swift; sourceTree = "<group>"; };
+		D9ED38C726189C2A000FD939 /* VideoTalkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTalkDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +78,8 @@
 			children = (
 				D9AF115A260DC5950008014C /* settings */,
 				D95736B72606165E004E0CAF /* TuebixAppApp.swift */,
-				D95736B92606165E004E0CAF /* ContentView.swift */,
+				D92A4860261749B1008241A6 /* ConferencesViewModel.swift */,
+				D995C0742618590F0020DD62 /* Views */,
 				D9AF1155260DBFBA0008014C /* services */,
 				D95736BB2606165F004E0CAF /* Assets.xcassets */,
 				D95736C02606165F004E0CAF /* Persistence.swift */,
@@ -83,6 +98,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D995C0742618590F0020DD62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D95736B92606165E004E0CAF /* ContentView.swift */,
+				D995C071261859080020DD62 /* CategoryRow.swift */,
+				D9DC9A36261869A60091DC08 /* CategoryYear.swift */,
+				D9E171362618730000FF3646 /* ConferenceList.swift */,
+				D9ED38C426189C12000FD939 /* DetailViews */,
+				D995C07726185C590020DD62 /* CategoryItem.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D9AF1155260DBFBA0008014C /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +126,15 @@
 				D9AF1157260DC58E0008014C /* config.swift */,
 			);
 			path = settings;
+			sourceTree = "<group>";
+		};
+		D9ED38C426189C12000FD939 /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				D9ED38C126189C09000FD939 /* BasicTalkDetail.swift */,
+				D9ED38C726189C2A000FD939 /* VideoTalkDetail.swift */,
+			);
+			path = DetailViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,13 +206,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9ED38C226189C09000FD939 /* BasicTalkDetail.swift in Sources */,
 				D95736C42606165F004E0CAF /* TuebixApp.xcdatamodeld in Sources */,
 				D95736C12606165F004E0CAF /* Persistence.swift in Sources */,
 				D95736BA2606165E004E0CAF /* ContentView.swift in Sources */,
 				D9AF115D260DCB4F0008014C /* ConferenceParser.swift in Sources */,
+				D92A4861261749B1008241A6 /* ConferencesViewModel.swift in Sources */,
 				D9AF1158260DC58E0008014C /* config.swift in Sources */,
 				D9AF1153260DBFB30008014C /* NetworkData.swift in Sources */,
+				D995C072261859080020DD62 /* CategoryRow.swift in Sources */,
+				D995C07826185C590020DD62 /* CategoryItem.swift in Sources */,
 				D95736B82606165E004E0CAF /* TuebixAppApp.swift in Sources */,
+				D9DC9A37261869A60091DC08 /* CategoryYear.swift in Sources */,
+				D9ED38C826189C2A000FD939 /* VideoTalkDetail.swift in Sources */,
+				D9E171372618730000FF3646 /* ConferenceList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

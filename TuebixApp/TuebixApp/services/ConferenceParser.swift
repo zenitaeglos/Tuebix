@@ -21,7 +21,7 @@ Basic, Video.
 */
 
 // Struct for basic event.
-struct BasicEventTag: EventTag {
+struct BasicEventTag: EventTag, Hashable {
     var start: String = ""
     var duration: String = ""
     var room: String = ""
@@ -48,12 +48,14 @@ class BasicEventParser: NSObject {
     
     var person: String
     var link: String
+    var day: String
     
     override init() {
         self.event = BasicEventTag()
         self.currentElement = ""
         self.person = ""
         self.link = ""
+        self.day = ""
         super.init()
 
     }
@@ -67,6 +69,10 @@ extension BasicEventParser: XMLParserDelegate {
         // find link if available
         if let link = attributeDict["href"] {
             self.link = link
+        }
+        
+        if self.currentElement == "day", let day = attributeDict["index"] {
+            self.day = day
         }
     }
     
@@ -172,6 +178,10 @@ class ConferenceParser: NSObject {
         self.parser.parse()
     }
     
+    func allTalks() -> [EventTag] {
+        return self.conferenceTalks
+    }
+    
     func printAll() {
         for item in self.conferenceTalks {
             print("\(item)")
@@ -212,7 +222,7 @@ extension ConferenceParser: EventParserDelegate {
     func parser(didFinishBasicEventParser event: EventTag) {
         self.parser.delegate = self
         self.currentParser = nil
-        self.conferenceTalks.append(event)
+        self.conferenceTalks.append(event as! BasicEventTag)
     }
     
     
