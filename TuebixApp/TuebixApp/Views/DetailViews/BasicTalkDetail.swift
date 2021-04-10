@@ -15,11 +15,11 @@ struct BasicTalkDetail: View {
                 .font(.title)
             Divider()
             Text(talkDetail.description)
+                .fixedSize(horizontal: false, vertical: true)
             ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
                 Link(key, destination: URL(string: value)!).padding()
             }
         }.padding()
-
     }
 }
 

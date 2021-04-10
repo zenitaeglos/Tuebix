@@ -13,12 +13,17 @@ struct CategoryItem: View {
         VStack(alignment: .leading) {
             conference.image
                 .resizable()
+                .padding()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 155, height: 155)
-                .cornerRadius(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16).stroke(Color.gray, lineWidth: 2)
+                )
             Text(conference.title)
                 .font(.caption)
         }
         .padding(.leading, 15)
+        
     }
 }
 

@@ -48,9 +48,9 @@ class ConferencesViewModel: ObservableObject {
     }
     
     func fetchConferenceTalks(from conference: Conference, at year: Int) {
-        print(conference)
+        //print(conference)
         print(year)
-        print(conference.basicURL + String(year) + conference.endURL)
+        //print(conference.basicURL + String(year) + conference.endURL)
         self.network.fetchData(from: conference.basicURL + String(year) + conference.endURL)
     }
     

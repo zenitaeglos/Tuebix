@@ -16,6 +16,7 @@ struct VideoTalkDetail: View {
             Text(talkDetail.subtitle).font(.title2)
             Divider()
             Text(talkDetail.description)
+                .fixedSize(horizontal: false, vertical: true)
             
             if isVideo() {
                 VideoPlayer(player: AVPlayer(url: URL(string: self.urlForVideo())!))

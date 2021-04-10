@@ -19,15 +19,17 @@ struct ContentView: View {
                 NavigationLink(destination: CategoryYear(conference: conferenceInformation.conferenceFeatured)) {
                     conferenceInformation.conferenceFeatured.image
                         .resizable()
-                        .scaledToFill()
+                        .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
                         .clipped()
+                    
                 }
 
                 CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
             }
             .navigationTitle("Linux Conferences")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             self.conferenceInformation.setDelegate()
         }

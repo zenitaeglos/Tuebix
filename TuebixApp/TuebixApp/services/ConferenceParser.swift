@@ -99,7 +99,7 @@ extension BasicEventParser: XMLParserDelegate {
         }
         
         if self.currentElement == "title" {
-            self.event.title = string
+            self.event.title += string
         }
         
         if self.currentElement == "description" {
