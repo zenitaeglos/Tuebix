@@ -22,20 +22,9 @@ struct BasicTalkDetail: View {
         }.padding()
         .toolbar {
             ToolbarItem {
-                Button(action: shareContent, label: {
-                    Image(systemName: "square.and.arrow.up")
-                })
+                ButtonShare(descriptionToShare: talkDetail.title)
             }
         }
-    }
-    
-    func shareContent() {
-        // it shares the content of this specific
-        //talk to other applications
-        var dataToShare = ["Look at this talk, it looks interesting"]
-        dataToShare.append(talkDetail.title)
-        let activityView = UIActivityViewController(activityItems: dataToShare, applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
 

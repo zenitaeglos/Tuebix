@@ -29,6 +29,11 @@ struct VideoTalkDetail: View {
 
             }
         }.padding()
+        .toolbar {
+            ToolbarItem {
+                ButtonShare(descriptionToShare: talkDetail.title)
+            }
+        }
     }
     
     func isVideo() -> Bool {
