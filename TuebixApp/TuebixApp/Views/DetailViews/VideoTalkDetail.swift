@@ -15,7 +15,7 @@ struct VideoTalkDetail: View {
             Text(talkDetail.title).font(.title)
             Text(talkDetail.subtitle).font(.title2)
             Divider()
-            Text(talkDetail.description)
+            Text(talkDetail.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil))
                 .fixedSize(horizontal: false, vertical: true)
             
             if isVideo() {

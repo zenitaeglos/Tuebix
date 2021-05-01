@@ -14,6 +14,7 @@
 		D95736BF2606165F004E0CAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95736BE2606165F004E0CAF /* Preview Assets.xcassets */; };
 		D95736C12606165F004E0CAF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95736C02606165F004E0CAF /* Persistence.swift */; };
 		D95736C42606165F004E0CAF /* TuebixApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D95736C22606165F004E0CAF /* TuebixApp.xcdatamodeld */; };
+		D9862944263D607D000E58BE /* InformationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9862943263D607D000E58BE /* InformationTab.swift */; };
 		D995C072261859080020DD62 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995C071261859080020DD62 /* CategoryRow.swift */; };
 		D995C07826185C590020DD62 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995C07726185C590020DD62 /* CategoryItem.swift */; };
 		D998E2CC26399188005806D0 /* ButtonShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2CB26399188005806D0 /* ButtonShare.swift */; };
@@ -36,6 +37,7 @@
 		D95736C02606165F004E0CAF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D95736C32606165F004E0CAF /* TuebixApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TuebixApp.xcdatamodel; sourceTree = "<group>"; };
 		D95736C52606165F004E0CAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9862943263D607D000E58BE /* InformationTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTab.swift; sourceTree = "<group>"; };
 		D995C071261859080020DD62 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		D995C07726185C590020DD62 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		D998E2CB26399188005806D0 /* ButtonShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonShare.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		D995C0742618590F0020DD62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9862943263D607D000E58BE /* InformationTab.swift */,
 				D998E2CA26399169005806D0 /* Buttons */,
 				D95736B92606165E004E0CAF /* ContentView.swift */,
 				D995C071261859080020DD62 /* CategoryRow.swift */,
@@ -229,6 +232,7 @@
 				D998E2CC26399188005806D0 /* ButtonShare.swift in Sources */,
 				D995C07826185C590020DD62 /* CategoryItem.swift in Sources */,
 				D95736B82606165E004E0CAF /* TuebixAppApp.swift in Sources */,
+				D9862944263D607D000E58BE /* InformationTab.swift in Sources */,
 				D9DC9A37261869A60091DC08 /* CategoryYear.swift in Sources */,
 				D9ED38C826189C2A000FD939 /* VideoTalkDetail.swift in Sources */,
 				D9E171372618730000FF3646 /* ConferenceList.swift in Sources */,

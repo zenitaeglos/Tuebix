@@ -14,24 +14,31 @@ struct ContentView: View {
     //@ObservedObject var conferences: ConferencesViewModel
     var body: some View {
         
-        NavigationView {
-            List {
-                NavigationLink(destination: CategoryYear(conference: conferenceInformation.conferenceFeatured)) {
-                    conferenceInformation.conferenceFeatured.image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .clipped()
+        TabView {
+            NavigationView {
+                List {
+                    NavigationLink(destination: CategoryYear(conference: conferenceInformation.conferenceFeatured)) {
+                        conferenceInformation.conferenceFeatured.image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 200)
+                            .clipped()
+                    }
                     
+                    CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
                 }
-
-                CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
+                .navigationTitle("Linux Conferences")
             }
-            .navigationTitle("Linux Conferences")
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            self.conferenceInformation.setDelegate()
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                self.conferenceInformation.setDelegate()
+            }.tabItem {
+                Label("Conferences", systemImage: "list.dash")
+            }
+            InformationTab()
+                .tabItem {
+                    Label("Information", systemImage: "list.dash")
+                }
         }
     }
 }
