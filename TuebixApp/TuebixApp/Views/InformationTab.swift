@@ -9,7 +9,17 @@ import SwiftUI
 
 struct InformationTab: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Link(destination: URL(string: "https://github.com/zenitaeglos/Tuebix")!) {
+                Image("tuebix-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }.frame(alignment: .top)
+            .padding(.top, 40)
+            Spacer()
+            Text("App created by\nAlejandro Martinez")
+            Spacer()
+        }.padding()
     }
 }
 
