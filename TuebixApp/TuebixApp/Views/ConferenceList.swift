@@ -13,12 +13,14 @@ struct ConferenceList: View {
     var conference: Conference
     var chosenYear: Int
 
+    @State private var searchText = ""
     
     @ViewBuilder
     var body: some View {
+        SearchBar(text: $searchText)
         if conference.type == "basic" {
             List {
-                ForEach(conferenceInformation.conferenceTalksBasicList, id: \.self) { item in
+                ForEach(conferenceInformation.conferenceTalksBasicList.filter({ searchText.isEmpty ? true : $0.title.contains(searchText)}), id: \.self) { item in
                     NavigationLink(
                         destination: BasicTalkDetail(talkDetail: item)) {
                         VStack(alignment: .leading, spacing: 5) {
@@ -38,7 +40,7 @@ struct ConferenceList: View {
         
         else if conference.type == "video" {
             List {
-                ForEach(self.conferenceInformation.conferenceTalksVideoList, id: \.self) { item in
+                ForEach(self.conferenceInformation.conferenceTalksVideoList.filter({ searchText.isEmpty ? true: $0.title.contains(searchText) }), id: \.self) { item in
                     NavigationLink(destination: VideoTalkDetail(talkDetail: item)) {
                         VStack(alignment: .leading, spacing: 5) {
                             Text(item.title).font(.headline)

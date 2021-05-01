@@ -21,6 +21,7 @@
 		D9AF1153260DBFB30008014C /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF1152260DBFB30008014C /* NetworkData.swift */; };
 		D9AF1158260DC58E0008014C /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF1157260DC58E0008014C /* config.swift */; };
 		D9AF115D260DCB4F0008014C /* ConferenceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF115C260DCB4F0008014C /* ConferenceParser.swift */; };
+		D9BE7DBA263D8AAE00F44CD8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE7DB9263D8AAE00F44CD8 /* SearchBar.swift */; };
 		D9DC9A37261869A60091DC08 /* CategoryYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC9A36261869A60091DC08 /* CategoryYear.swift */; };
 		D9E171372618730000FF3646 /* ConferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E171362618730000FF3646 /* ConferenceList.swift */; };
 		D9ED38C226189C09000FD939 /* BasicTalkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED38C126189C09000FD939 /* BasicTalkDetail.swift */; };
@@ -44,6 +45,7 @@
 		D9AF1152260DBFB30008014C /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		D9AF1157260DC58E0008014C /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		D9AF115C260DCB4F0008014C /* ConferenceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceParser.swift; sourceTree = "<group>"; };
+		D9BE7DB9263D8AAE00F44CD8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D9DC9A36261869A60091DC08 /* CategoryYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryYear.swift; sourceTree = "<group>"; };
 		D9E171362618730000FF3646 /* ConferenceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceList.swift; sourceTree = "<group>"; };
 		D9ED38C126189C09000FD939 /* BasicTalkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTalkDetail.swift; sourceTree = "<group>"; };
@@ -105,8 +107,8 @@
 		D995C0742618590F0020DD62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE7DB8263D8A9100F44CD8 /* Elements */,
 				D9862943263D607D000E58BE /* InformationTab.swift */,
-				D998E2CA26399169005806D0 /* Buttons */,
 				D95736B92606165E004E0CAF /* ContentView.swift */,
 				D995C071261859080020DD62 /* CategoryRow.swift */,
 				D9DC9A36261869A60091DC08 /* CategoryYear.swift */,
@@ -140,6 +142,15 @@
 				D9AF1157260DC58E0008014C /* config.swift */,
 			);
 			path = settings;
+			sourceTree = "<group>";
+		};
+		D9BE7DB8263D8A9100F44CD8 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				D998E2CA26399169005806D0 /* Buttons */,
+				D9BE7DB9263D8AAE00F44CD8 /* SearchBar.swift */,
+			);
+			path = Elements;
 			sourceTree = "<group>";
 		};
 		D9ED38C426189C12000FD939 /* DetailViews */ = {
@@ -230,6 +241,7 @@
 				D9AF1153260DBFB30008014C /* NetworkData.swift in Sources */,
 				D995C072261859080020DD62 /* CategoryRow.swift in Sources */,
 				D998E2CC26399188005806D0 /* ButtonShare.swift in Sources */,
+				D9BE7DBA263D8AAE00F44CD8 /* SearchBar.swift in Sources */,
 				D995C07826185C590020DD62 /* CategoryItem.swift in Sources */,
 				D95736B82606165E004E0CAF /* TuebixAppApp.swift in Sources */,
 				D9862944263D607D000E58BE /* InformationTab.swift in Sources */,
