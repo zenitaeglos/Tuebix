@@ -18,11 +18,15 @@ struct ContentView: View {
             NavigationView {
                 List {
                     NavigationLink(destination: CategoryYear(conference: conferenceInformation.conferenceFeatured)) {
-                        conferenceInformation.conferenceFeatured.image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 200)
-                            .clipped()
+                        HStack {
+                            Spacer()
+                            conferenceInformation.conferenceFeatured.image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 200)
+                                .clipped()
+                            Spacer()
+                        }
                     }
                     
                     CategoryRow(categoryName: "Other Conferences", items: conferenceInformation.conferences)
