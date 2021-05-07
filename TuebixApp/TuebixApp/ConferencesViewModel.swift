@@ -49,7 +49,6 @@ class ConferencesViewModel: ObservableObject {
     
     func fetchConferenceTalks(from conference: Conference, at year: Int) {
         //print(conference)
-        print(year)
         //print(conference.basicURL + String(year) + conference.endURL)
         self.network.fetchData(from: conference.basicURL + String(year) + conference.endURL)
     }
@@ -61,7 +60,7 @@ class ConferencesViewModel: ObservableObject {
 extension ConferencesViewModel: NetworkDataDelegate {
     func didReceiveData(fetchedData: Data) {
         let x = ConferenceParser(data: fetchedData, type: self.currentConference?.type ?? "basic")
-        x.printAll()
+        //x.printAll()
         //var myType = "basic"
         switch self.currentConference?.type {
         case "basic":
