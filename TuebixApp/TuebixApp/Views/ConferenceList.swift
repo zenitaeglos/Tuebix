@@ -25,14 +25,7 @@ struct ConferenceList: View {
                         ForEach(self.conferenceInformation.conferenceTalksBasicList.filter({ searchText.isEmpty ? true : $0.title.contains(searchText)}).filter({ $0.room == room }).sorted(by: { ($0.day, $0.start) < ($1.day, $1.start)}), id: \.self) { item in
                             NavigationLink(
                                 destination: BasicTalkDetail(talkDetail: item)) {
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(item.title).font(.headline)
-                                    HStack {
-                                        Text("start: " + item.start).font(.subheadline)
-                                        Text("Day: " + item.day).font(.subheadline)
-                                    }
-                                }
-                                .padding([.top, .bottom], 5)
+                                TableCellView(title: item.title, start: item.start, day: item.day)
                             }
                         }
                     }
@@ -40,14 +33,7 @@ struct ConferenceList: View {
                     else if conference.type == "video" {
                         ForEach(self.conferenceInformation.conferenceTalksVideoList.filter({ searchText.isEmpty ? true: $0.title.contains(searchText) }).filter({ $0.room == room }).sorted(by: { ($0.day, $0.start) < ($1.day, $1.start)}), id: \.self) { item in
                             NavigationLink(destination: VideoTalkDetail(talkDetail: item)) {
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(item.title).font(.headline)
-                                    HStack {
-                                        Text("start: " + item.start).font(.subheadline)
-                                        Text("Day: " + item.day).font(.subheadline)
-                                    }
-                                }
-                                .padding([.top, .bottom], 5)
+                                TableCellView(title: item.title, start: item.start, day: item.day)
                             }
                         }
                     }
@@ -135,5 +121,21 @@ struct ConferenceList: View {
 struct ConferenceList_Previews: PreviewProvider {
     static var previews: some View {
         ConferenceList(conference: Conference(title: "Tuebix", type: "basic", years: [2016, 2017, 2018, 2019], basicURL: "https://tuebix.org/", endURL: "giggity.xml", imageName: "play.rectangle.fill"), chosenYear: 2019)
+    }
+}
+
+struct TableCellView: View {
+    let title: String
+    let start: String
+    let day: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title).font(.headline)
+            HStack {
+                Text("start: " + start).font(.subheadline)
+                Text("Day: " + day).font(.subheadline)
+            }
+        }
+        .padding([.top, .bottom], 5)
     }
 }
