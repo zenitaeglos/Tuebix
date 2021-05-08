@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ButtonShare: View {
-    var descriptionToShare: String
+    var conferenceName: String
+    var titleTalk: String
+    var persons: [String]
     var body: some View {
         Button(action: shareContent, label: {
             Image(systemName: "square.and.arrow.up")
@@ -18,15 +20,59 @@ struct ButtonShare: View {
     func shareContent() {
         // it shares the content of this specific
         //talk to other applications
-        var dataToShare = ["Look at this talk, it looks interesting\n"]
-        dataToShare.append(descriptionToShare)
+        //var dataToShare: [Any] = ["Look at this talk, it looks interesting\n"]
+        let itemSource = ShareActivityItemSource(conferenceName: conferenceName, title: titleTalk, persons: persons)
+        var dataToShare = [itemSource]
+        //dataToShare.append(descriptionToShare)
         let activityView = UIActivityViewController(activityItems: dataToShare, applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
 }
 
+
+class ShareActivityItemSource: NSObject, UIActivityItemSource {
+    
+    let conference: String
+    let title: String
+    let persons: [String]
+    
+    init(conferenceName: String, title: String, persons: [String]) {
+        self.conference = conferenceName
+        self.title = title
+        self.persons = persons
+        
+        super.init()
+    }
+    
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return self.conference
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        if activityType == .postToTwitter {
+            return self.title + " #TuebixApp"
+        }
+        
+        var personsString = ""
+        for person in self.persons {
+            if personsString.count != 0 {
+                personsString += ", "
+            }
+            personsString += person
+        }
+        
+        return "Talk: " + self.title + "\nGiven by: " + personsString
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return self.conference
+    }
+    
+    
+}
+
 struct ButtonShare_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonShare(descriptionToShare: "Look at this cool talk")
+        ButtonShare(conferenceName: "Tuebix", titleTalk: "nothing", persons: ["me", "you"])
     }
 }

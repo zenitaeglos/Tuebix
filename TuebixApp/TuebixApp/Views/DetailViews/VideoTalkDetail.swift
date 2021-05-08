@@ -32,7 +32,8 @@ struct VideoTalkDetail: View {
         }.padding()
         .toolbar {
             ToolbarItem {
-                ButtonShare(descriptionToShare: talkDetail.title)
+                ButtonShare(conferenceName: talkDetail.conferenceName, titleTalk: talkDetail.title, persons: talkDetail.persons)
+                //ButtonShare(descriptionToShare: talkDetail.title)
             }
         }
     }
