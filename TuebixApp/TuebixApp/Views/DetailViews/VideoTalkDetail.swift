@@ -21,6 +21,7 @@ struct VideoTalkDetail: View {
             if isVideo() {
                 VideoPlayer(player: AVPlayer(url: URL(string: self.urlForVideo())!))
                     .frame(height: 400)
+
             }
             ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
                 if !key.contains("Video recording") {
@@ -37,6 +38,7 @@ struct VideoTalkDetail: View {
     }
     
     func isVideo() -> Bool {
+        print(talkDetail)
         if self.talkDetail.links["Video recording (mp4)"] != nil {
             return true
         }

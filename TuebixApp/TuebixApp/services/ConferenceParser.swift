@@ -31,6 +31,8 @@ struct BasicEventTag: EventTag, Hashable {
     var persons: [String] = []
     var links: [String: String] = [ : ]
     var day: String = ""
+    var conferenceName: String = ""
+    var year: String = ""
 }
 
 struct VideoEventTag: EventTag, Hashable {
@@ -45,6 +47,8 @@ struct VideoEventTag: EventTag, Hashable {
     var persons: [String] = []
     var links: [String: String] = [ : ]
     var day: String = ""
+    var conferenceName: String = ""
+    var year: String = ""
 }
 
 
@@ -61,13 +65,18 @@ class BasicEventParser: NSObject {
     var person: String
     var link: String
     var day: String
+    let conferenceName: String
+    let year: String
     
-    init(day: String) {
+    init(day: String, conference: String, year: String) {
         self.event = BasicEventTag()
         self.currentElement = ""
         self.person = ""
         self.link = ""
         self.day = day
+        self.conferenceName = conference
+        self.year = year
+        
         super.init()
     }
     
@@ -77,6 +86,8 @@ class BasicEventParser: NSObject {
         self.person = ""
         self.link = ""
         self.day = ""
+        self.conferenceName = ""
+        self.year = ""
         super.init()
 
     }
@@ -131,6 +142,8 @@ extension BasicEventParser: XMLParserDelegate {
         
         if elementName == "event" {
             self.event.day = self.day
+            self.event.conferenceName = self.conferenceName
+            self.event.year = self.year
             self.delegate?.parser(didFinishBasicEventParser: self.event)
         }
         
@@ -149,13 +162,17 @@ class VideoEventParser: NSObject {
     var person: String
     var link: String
     let day: String
+    let conferenceName: String
+    let year: String
     
-    init(day: String) {
+    init(day: String, conference: String, year: String) {
         self.event = VideoEventTag()
         self.currentElement = ""
         self.person = ""
         self.link = ""
         self.day = day
+        self.conferenceName = conference
+        self.year = year
         super.init()
     }
     
@@ -165,6 +182,8 @@ class VideoEventParser: NSObject {
         self.person = ""
         self.link = ""
         self.day = ""
+        self.conferenceName = ""
+        self.year = ""
         super.init()
 
     }
@@ -225,6 +244,8 @@ extension VideoEventParser: XMLParserDelegate {
         
         if elementName == "event" {
             self.event.day = self.day
+            self.event.conferenceName = self.conferenceName
+            self.event.year = self.year
             self.delegate?.parser(didFinishBasicEventParser: self.event)
         }
         self.currentElement = ""
@@ -241,6 +262,9 @@ class ConferenceParser: NSObject {
     var conferenceTalks: [EventTag]
     let type: String
     var day: String
+    var currentTag: String
+    var conference: String
+    var year: String
 
     
     init(data: Data, type: String) {
@@ -248,6 +272,9 @@ class ConferenceParser: NSObject {
         self.conferenceTalks = [EventTag]()
         self.type = type
         self.day = ""
+        self.currentTag = ""
+        self.conference = ""
+        self.year = ""
         super.init()
 
         self.parser.delegate = self
@@ -275,16 +302,18 @@ extension ConferenceParser: XMLParserDelegate {
             self.day = day
         }
         
+        self.currentTag = elementName
+        
         if elementName == "event" {
             if self.type == "basic" {
-                let basicEventParser = BasicEventParser(day: self.day)
+                let basicEventParser = BasicEventParser(day: self.day, conference: self.conference, year: self.year)
                 basicEventParser.delegate = self
                 self.parser.delegate = basicEventParser
                 self.currentParser = basicEventParser
             }
             
             else if self.type == "video" {
-                let videoEventParser = VideoEventParser(day: self.day)
+                let videoEventParser = VideoEventParser(day: self.day, conference: self.conference, year: self.year)
                 videoEventParser.delegate = self
                 self.parser.delegate = videoEventParser
                 self.currentParser = videoEventParser
@@ -294,7 +323,16 @@ extension ConferenceParser: XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        //print("\(string)")
+        if self.currentTag == "title" {
+            self.conference += string
+        }
+        else if self.currentTag == "start" {
+            self.year += string
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        self.currentTag = ""
     }
 }
 

@@ -41,7 +41,7 @@ struct ConferenceList: View {
                 }
             }
 
-        }.navigationTitle(conference.title).onAppear {
+        }.navigationTitle(conference.title + ", " + String(chosenYear)).onAppear {
         self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
         }
         /*
