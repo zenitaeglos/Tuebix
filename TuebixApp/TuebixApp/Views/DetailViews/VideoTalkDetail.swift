@@ -15,6 +15,11 @@ struct VideoTalkDetail: View {
             Text(talkDetail.title).font(.title)
             Text(talkDetail.subtitle).font(.title2)
             Divider()
+            if talkDetail.persons.count > 0 {
+                Text(self.personListToString())
+                    .padding()
+            }
+
             Text(talkDetail.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil))
                 .fixedSize(horizontal: false, vertical: true)
             
@@ -52,10 +57,30 @@ struct VideoTalkDetail: View {
         
         return urlLink
     }
+    
+    func personListToString() -> String {
+        var personsString = ""
+        for person in talkDetail.persons {
+            if personsString.count != 0 {
+                personsString += ", "
+            }
+            
+            personsString += person
+        }
+        
+        if talkDetail.persons.count == 1 {
+            personsString = "Speaker: " + personsString
+        }
+        else if talkDetail.persons.count > 1 {
+            personsString = "Speakers: " + personsString
+        }
+        
+        return personsString
+    }
 }
 
 struct VideoTalkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        VideoTalkDetail(talkDetail: VideoEventTag(start: "1", duration: "2", room: "3", title: "4", subtitle: "5", track: "6", abstract: "asd", description: "asd", persons: ["ad"], links: ["ad": "add"]))
+        VideoTalkDetail(talkDetail: VideoEventTag(start: "1", duration: "2", room: "3", title: "4", subtitle: "5", track: "6", abstract: "asd", description: "asd", persons: ["ad", "second"], links: ["ad": "add"]))
     }
 }

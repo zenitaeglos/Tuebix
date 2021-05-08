@@ -14,6 +14,10 @@ struct BasicTalkDetail: View {
             Text(talkDetail.title)
                 .font(.title)
             Divider()
+            if talkDetail.persons.count > 0 {
+                Text(self.personListToString())
+                    .padding()
+            }
             Text(talkDetail.description)
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
@@ -26,6 +30,28 @@ struct BasicTalkDetail: View {
             }
         }
     }
+    
+    func personListToString() -> String {
+        var personsString = ""
+        
+        for person in talkDetail.persons {
+            if personsString.count != 0 {
+                personsString += ", "
+            }
+            
+            personsString += person
+        }
+        
+        if talkDetail.persons.count == 1 {
+            personsString = "Speaker: " + personsString
+        }
+        else if talkDetail.persons.count > 1 {
+            personsString = "Speakers: " + personsString
+        }
+        
+        return personsString
+    }
+    
 }
 
 struct BasicTalkDetail_Previews: PreviewProvider {
