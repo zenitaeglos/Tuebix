@@ -33,7 +33,6 @@ class ConferencesViewModel: ObservableObject {
     
     
     func setDelegate() {
-        print("setting the delegate")
         self.network.delegate = self
     }
     
@@ -78,7 +77,8 @@ extension ConferencesViewModel: NetworkDataDelegate {
     }
     
     func didOccurrErrorInFetching(_ error: String) {
-        
+        print("there was an error")
+        print(error)
     }
     
     
