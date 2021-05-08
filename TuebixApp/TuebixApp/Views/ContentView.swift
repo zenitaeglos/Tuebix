@@ -41,7 +41,7 @@ struct ContentView: View {
             }
             InformationTab()
                 .tabItem {
-                    Label("Information", systemImage: "list.dash")
+                    Label("Information", systemImage: "info.circle")
                 }
         }
     }

@@ -19,11 +19,9 @@ struct ButtonShare: View {
 
     func shareContent() {
         // it shares the content of this specific
-        //talk to other applications
-        //var dataToShare: [Any] = ["Look at this talk, it looks interesting\n"]
+
         let itemSource = ShareActivityItemSource(conferenceName: conferenceName, title: titleTalk, persons: persons)
-        var dataToShare = [itemSource]
-        //dataToShare.append(descriptionToShare)
+        let dataToShare = [itemSource]
         let activityView = UIActivityViewController(activityItems: dataToShare, applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true, completion: nil)
     }
