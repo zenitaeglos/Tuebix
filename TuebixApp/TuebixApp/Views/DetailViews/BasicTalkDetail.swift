@@ -18,7 +18,7 @@ struct BasicTalkDetail: View {
                 Text(self.personListToString())
                     .padding()
             }
-            Text(talkDetail.description)
+            Text(talkDetail.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil))
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
                 Link(key, destination: URL(string: value)!).padding()
