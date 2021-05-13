@@ -22,6 +22,7 @@ struct CategoryYear: View {
         }.navigationTitle(conference.title)
         .onAppear {
             self.conferencesInformation.setCurrentConference(from: conference)
+            self.conferencesInformation.deleteConferenceLists()
         }
     }
 }

@@ -44,9 +44,6 @@ struct ConferenceList: View {
 
         }.navigationTitle(conference.title + ", " + String(chosenYear)).onAppear {
         self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
-        }
-        .onDisappear {
-            conferenceInformation.deleteConferenceLists()
         }.alert(isPresented: self.$conferenceInformation.isFetchError) {
             Alert(title: Text("There has been a problem"), message: Text(self.conferenceInformation.fetchErrorInformation))
         }
