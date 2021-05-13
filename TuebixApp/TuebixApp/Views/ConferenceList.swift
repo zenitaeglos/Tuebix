@@ -15,6 +15,7 @@ struct ConferenceList: View {
 
     @State private var searchText = ""
     
+    
     @ViewBuilder
     var body: some View {
         SearchBar(text: $searchText)
