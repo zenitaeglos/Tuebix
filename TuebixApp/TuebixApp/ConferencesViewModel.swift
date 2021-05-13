@@ -18,6 +18,8 @@ class ConferencesViewModel: ObservableObject {
     @Published var conferenceTalksList: [EventTag]
     @Published var conferenceTalksBasicList: [BasicEventTag]
     @Published var conferenceTalksVideoList: [VideoEventTag]
+    @Published var isFetchError: Bool
+    @Published var fetchErrorInformation: String
     
     
     let network: NetworkData
@@ -28,6 +30,8 @@ class ConferencesViewModel: ObservableObject {
         self.conferenceTalksList = [BasicEventTag]()
         self.conferenceTalksBasicList = [BasicEventTag]()
         self.conferenceTalksVideoList = [VideoEventTag]()
+        self.isFetchError = false
+        self.fetchErrorInformation = String()
         self.currentConference = nil
     }
     
@@ -57,8 +61,8 @@ class ConferencesViewModel: ObservableObject {
     func deleteConferenceLists() {
         self.conferenceTalksBasicList.removeAll()
         self.conferenceTalksVideoList.removeAll()
+        self.fetchErrorInformation = String()
     }
-    
 }
 
 
@@ -86,6 +90,8 @@ extension ConferencesViewModel: NetworkDataDelegate {
     func didOccurrErrorInFetching(_ error: String) {
         print("there was an error")
         print(error)
+        self.isFetchError = true
+        self.fetchErrorInformation = error
     }
     
     
