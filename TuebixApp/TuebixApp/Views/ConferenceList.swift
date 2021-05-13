@@ -45,6 +45,9 @@ struct ConferenceList: View {
         }.navigationTitle(conference.title + ", " + String(chosenYear)).onAppear {
         self.conferenceInformation.fetchConferenceTalks(from: conference, at: chosenYear)
         }
+        .onDisappear {
+            conferenceInformation.deleteConferenceLists()
+        }
         /*
         if conference.type == "basic" {
             List {

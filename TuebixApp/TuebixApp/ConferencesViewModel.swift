@@ -52,6 +52,13 @@ class ConferencesViewModel: ObservableObject {
         self.network.fetchData(from: conference.basicURL + String(year) + conference.endURL)
     }
     
+    // delete all the lists, as we leave the list view, to give a new search possibility
+    // eliminate unncessesary lists
+    func deleteConferenceLists() {
+        self.conferenceTalksBasicList.removeAll()
+        self.conferenceTalksVideoList.removeAll()
+    }
+    
 }
 
 
