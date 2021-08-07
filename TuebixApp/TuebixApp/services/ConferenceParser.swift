@@ -12,7 +12,7 @@ import Foundation
 
 
 protocol EventTag {
-    
+    mutating func addField(field foundCharacter: String, name tag: String)
 }
 
 /*
@@ -33,6 +33,50 @@ struct BasicEventTag: EventTag, Hashable {
     var day: String = ""
     var conferenceName: String = ""
     var year: String = ""
+    var link: String = ""
+    var linkKey: String = ""
+    var person: String = ""
+
+
+    mutating func addField(field foundCharacter: String, name tag: String) {
+        switch tag {
+        case "start":
+            self.start = foundCharacter
+        case "duration":
+            self.duration = foundCharacter
+        case "room":
+            self.room = foundCharacter
+        case "title":
+            self.title += foundCharacter
+        case "description":
+            self.description += foundCharacter
+        case "person":
+            self.person += foundCharacter
+        case "day":
+            self.day = foundCharacter
+        case "link":
+            self.linkKey += foundCharacter
+        case "href":
+            var correctedLink = foundCharacter
+            if !correctedLink.starts(with: "http") {
+                correctedLink = "https://" + correctedLink
+            }
+            self.link = correctedLink
+        case "conference":
+            self.conferenceName = foundCharacter
+        case "year":
+            self.year = foundCharacter
+        case "personCompound":
+            self.persons.append(self.person)
+            self.person = ""
+        case "linkCompound":
+            self.links[self.linkKey] = self.link
+            self.linkKey = ""
+            self.link = ""
+        default:
+            break
+        }
+    }
 }
 
 struct VideoEventTag: EventTag, Hashable {
@@ -49,6 +93,10 @@ struct VideoEventTag: EventTag, Hashable {
     var day: String = ""
     var conferenceName: String = ""
     var year: String = ""
+    
+    mutating func addField(field foundCharacter: String, name tag: String) {
+        // TODO. add functionality to video event.
+    }
 }
 
 
@@ -62,32 +110,19 @@ class BasicEventParser: NSObject {
     var delegate: EventParserDelegate?
     var currentElement: String
     
-    var person: String
-    var link: String
-    var day: String
-    let conferenceName: String
-    let year: String
     
     init(day: String, conference: String, year: String) {
         self.event = BasicEventTag()
         self.currentElement = ""
-        self.person = ""
-        self.link = ""
-        self.day = day
-        self.conferenceName = conference
-        self.year = year
-        
+        self.event.addField(field: conference, name: "conference")
+        self.event.addField(field: year, name: "year")
+        self.event.addField(field: day, name: "day")
         super.init()
     }
     
     override init() {
         self.event = BasicEventTag()
         self.currentElement = ""
-        self.person = ""
-        self.link = ""
-        self.day = ""
-        self.conferenceName = ""
-        self.year = ""
         super.init()
 
     }
@@ -99,56 +134,22 @@ extension BasicEventParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentElement = elementName
         // find link if available
-        if let link = attributeDict["href"] {
-            self.link = link
+        for (key, value) in attributeDict {
+            self.event.addField(field: value, name: key)
         }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if self.currentElement == "start" {
-            self.event.start = string
-        }
-        
-        if self.currentElement == "duration" {
-            self.event.duration = string
-        }
-        
-        if self.currentElement == "room" {
-            self.event.room = string
-        }
-        
-        if self.currentElement == "title" {
-            self.event.title += string
-        }
-        
-        if self.currentElement == "description" {
-            self.event.description += string
-        }
-        
-        if self.currentElement == "person" {
-            self.person += string
-        }
-        
-        if self.currentElement == "link" {
-            self.event.links[string] = self.link
-        }
+        self.event.addField(field: string, name: self.currentElement)
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "person" {
-            self.event.persons.append(self.person)
-            self.person = ""
-        }
-        
+        self.event.addField(field: "", name: elementName + "Compound")
+
         if elementName == "event" {
-            self.event.day = self.day
-            self.event.conferenceName = self.conferenceName
-            self.event.year = self.year
             self.delegate?.parser(didFinishBasicEventParser: self.event)
         }
-        
         self.currentElement = ""
-        self.link = ""
     }
 }
 
