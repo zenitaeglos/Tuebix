@@ -97,6 +97,15 @@ struct VideoEventTag: EventTag, Hashable {
     mutating func addField(field foundCharacter: String, name tag: String) {
         // TODO. add functionality to video event.
     }
+    
+    func isVideo() -> Bool {
+        for (key, _) in self.links {
+            if key.lowercased().replacingOccurrences(of: " ", with: "").contains("videorecording(mp4)") {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 

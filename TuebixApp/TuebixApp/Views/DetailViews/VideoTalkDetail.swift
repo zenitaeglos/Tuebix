@@ -30,7 +30,8 @@ struct VideoTalkDetail: View {
             }
             ForEach(talkDetail.links.sorted(by: >), id: \.key) { key, value in
                 if !key.contains("Video recording") {
-                    Link(key, destination: URL(string: value)!).padding()
+                    Link(key, destination: URL(string: value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")!).padding()
+
                 }
 
             }
@@ -45,16 +46,23 @@ struct VideoTalkDetail: View {
     
     func isVideo() -> Bool {
         print(talkDetail)
-        if self.talkDetail.links["Video recording (mp4)"] != nil {
-            return true
+        
+        for (key, _) in self.talkDetail.links {
+            if key.lowercased().replacingOccurrences(of: " ", with: "").contains("videorecording(mp4)") {
+                
+                return true
+            }
         }
         return false
     }
     
     func urlForVideo() -> String {
-        guard let urlLink = self.talkDetail.links["Video recording (mp4)"] else { return "" }
-        
-        
+        var urlLink = ""
+        for (key, value) in self.talkDetail.links {
+            if key.lowercased().replacingOccurrences(of: " ", with: "").contains("videorecording(mp4)") {
+                urlLink = value
+            }
+        }
         return urlLink
     }
     
